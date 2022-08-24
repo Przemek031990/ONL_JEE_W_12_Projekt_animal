@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="|${animal.name} - AnimalClub|">Nazwa pupila - AnimalClub</title>
+</head>
+<body>
+<div class="container">
+    <main class="main-content" layout:fragment="content">
+        <section class="animal">
+            <!-- Podsumowanie -->
+            <div class="animal-summary">
+                <!-- Plakat -->
+                <img src="../static/img/poster-placeholder.png"
+                     th:src="@{/img/poster-placeholder.png}"
+                     alt="nazwa pupila"
+                     th:alt="${animal.name}"
+                     class="animal-summary-cover"
+                />
+                <!-- informacje o pupilu -->
+                <div class="animal-summary-info">
+                    <h1 class="animal-summary-name" th:text="${animal.name}">Puszek</h1>
+                    <p class="animal-summary-species">Rasa: <a href="#"
+                    th:href="@{|/rasa/${animal.genre}|}"
+                    th:text="${animal.genre}">Owczarek niemiecki</a>
+                    </p>
+                    <p class="animal-summary-age" th:text="${animal.age}">Wiek: 5</p>
+                    <p class="animal-summary-weight" th:text="${animal.weight}">Waga: 25 KG</p>
+                    <p class="animal-summary-item" >
+
+                    </p>
+                </div>
+            </div>
+            <!-- Ocena -->
+            <div class="animal-rating-container animal-section">
+                <h2 class="animal-section-heading">Ocena</h2>
+                <div>
+                    <p class="movie-rating-value" th:text="${avgRating}">4.0</p>
+                    <p style="text-align: center">Liczba ocen: 134</p>
+                </div>
+                <form action="#" class="animal-rating-form">
+                    <!-- Identyfikator profilu, na który głosujemy-->
+                    <p>Twoja ocena</p>
+                    <input type="hidden" name="animalId">
+                    <div class="animal-rating-buttons">
+                        <button class="animal-rating-button"><i class="fa-solid fa-thumbs-up"></i></button>
+                        <button class="animal-rating-button"><i class="fa-solid fa-thumbs-up"></i></button>
+                        <button class="animal-rating-button"><i class="fa-solid fa-thumbs-up"></i></button>
+                        <button class="animal-rating-button"><i class="fa-solid fa-thumbs-up"></i></button>
+                        <button class="animal-rating-button"><i class="fa-regular fa-thumbs-up"></i></button>
+                    </div>
+                </form>
+                <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+            </div>
+        </section>
+        <section class="animal-gallery-container animal-section">
+            <h2 class="animal-section-heading">Galeria</h2>
+        </section>
+        <section class="animal-section">
+            <h2 class="animal-section-heading">Opis</h2>
+            <p th:text="${animal.description}"> Jedna z ras psów należąca do grupy psów pasterskich
+                sklasyfikowana do sekcji psów pasterskich. Według klasyfikacji FCI
+                podlega próbom pracy. Zaliczany do psów obronnych. </p>
+        </section>
+    </main>
+</div>
+</body>
+</html>

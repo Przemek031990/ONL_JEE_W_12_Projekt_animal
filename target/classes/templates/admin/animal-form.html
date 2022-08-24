@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Dodaj swojego pupila</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+    <h2 class="list-heading">Dodaj swojego pupila</h2>
+    <form action="#" th:action="@{/admin/dodaj-pupila}" method="post" enctype="multipart/form-data" class="mc-form" th:object="${animal}">
+        <label for="name">Nazwa pupila: </label>
+        <input type="text" id="name" th:field="*{name}">
+        <label for="age">Wiek pupila: </label>
+        <input type="number" id="age" th:field="*{age}">
+        <label for="weight">Waga: </label>
+        <input type="number" id="weight" th:field="*{weight}">
+        <label for="genre">Rasa: </label>
+        <select id="genre" th:field="*{genre}" required>
+            <option value="" hidden>Wybierz rase</option>
+            <option th:each="genre: ${genres}" th:value="${genre.name}" th:text="${genre.name}"></option>
+        </select>
+        <label for="promoted">Promowanie na stronie głównej?</label>
+        <input id="promoted" type="checkbox" th:field="*{promoted}">
+        <label for="photo">Zdjęcie</label>
+        <input type="file" id="photo" th:field="*{photo}" accept="image/png, image/jpeg">
+        <label for="description">Pełny opis</label>
+        <textarea id="description" rows="10" th:field="*{description}"></textarea>
+        <button type="submit">Dodaj</button>
+    </form>
+</main>
+</body>
+</html>
