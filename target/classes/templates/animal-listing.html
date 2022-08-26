@@ -6,15 +6,19 @@
 <body>
 <div class="container">
     <main class="main-content" layout:fragment="content">
+        <!-- Nagłówek pobieramy z modelu -->
         <h2 class="list-heading" th:text="${heading}">Promowane profile</h2>
+        <!-- Opis pobieramy z modelu -->
         <p class="list-description" th:text="${description}">Opis sekcji, przykładowo opis kategorii, albo strony głównej</p>
         <ul class="animal-list" th:remove="all-but-first">
+
             <li class="animal-list-item" th:each="animal:${animal}">
                 <a href="#" th:href="@{|/profil/${animal.id}|}">
                     <img src="../static/img/poster-placeholder.png"
-                         th:src="@{/img/poster-placeholder.png}"
-                         alt="tytuł filmu"
-                         class="animal-list-item-poster">
+                         th:src="${animal.photo ne null} ? @{|/img/${animal.photo}|} : @{/img/poster-placeholder.png}"
+                         alt="nazwa pupila"
+                         th:alt="${animal.name}"
+                         class="animal-summary-cover"
                 </a>
                 <div class="animal-list-item-card">
                     <div class="animal-list-item-content">
@@ -25,14 +29,15 @@
                     </div>
                     <div class="animal-list-item-rating">
                         <i class="fa-solid fa-thumbs-up"></i>
-                        <span>8.7</span>
+                        <span th:if="${animal.ratingCount}" th:text="${#numbers.formatDecimal(animal.avgRating, 1, 1)}">8.7</span>
+                        <span th:if="!${animal.ratingCount}">Brak ocen</span>
                     </div>
                 </div>
             </li>
             <li class="animal-list-item">
                 <a href="#">
                     <img src="../static/img/poster-placeholder.png"
-                         alt="tytuł filmu"
+                         alt="nazwa pupila"
                          class="animal-list-item-poster">
                 </a>
                 <div class="animal-list-item-card">
@@ -51,7 +56,7 @@
             <li class="animal-list-item">
                 <a href="#">
                     <img src="../static/img/poster-placeholder.png"
-                         alt="tytuł filmu"
+                         alt="nazwa pupila"
                          class="animal-list-item-poster">
                 </a>
                 <div class="animal-list-item-card">

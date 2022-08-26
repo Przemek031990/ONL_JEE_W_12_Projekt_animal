@@ -45,9 +45,11 @@ i powinna zajmować większość dostępnej przestrzeni
 .menu-item {
     width: 100%;
     padding: 16px;
-    border-bottom: 1px #ffd1f7 solid;
+    border-bottom: 1px #6d6d6d solid;
     text-align: center;
     display: none;
+
+
 }
 /*Po wciśnięciu przycisku elementy będą widoczne*/
 .expanded > .menu-item {
