@@ -1,6 +1,5 @@
 package pl.coderslab.animalclub.domain.user;
 
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

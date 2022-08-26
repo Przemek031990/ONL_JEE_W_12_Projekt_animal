@@ -2,8 +2,11 @@ package pl.coderslab.animalclub.domain.animal;
 
 
 import pl.coderslab.animalclub.domain.genre.Genre;
+import pl.coderslab.animalclub.domain.rating.Rating;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Animal {
@@ -18,6 +21,8 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     private Genre genre;
+    @OneToMany(mappedBy = "animal")
+    private Set<Rating> ratings = new HashSet<>();
     private boolean promoted;
     private String photo;
 
@@ -84,5 +89,13 @@ public class Animal {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

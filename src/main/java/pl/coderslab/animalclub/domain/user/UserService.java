@@ -5,13 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.animalclub.domain.user.dto.UserCredentialsDto;
 import pl.coderslab.animalclub.domain.user.dto.UserRegistrationDto;
-
 import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
 public class UserService {
-    private static final String DEFAULT_USER_ROLE = "USER";
+    private static final String DEFAULT_USER_ROLE = "ADMIN";
         private final UserRepository userRepository;
         private final UserRoleRepository userRoleRepository;
         private final PasswordEncoder passwordEncoder;

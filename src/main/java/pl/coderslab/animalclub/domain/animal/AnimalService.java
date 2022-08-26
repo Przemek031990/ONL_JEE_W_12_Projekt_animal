@@ -1,6 +1,6 @@
 package pl.coderslab.animalclub.domain.animal;
 
-
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.coderslab.animalclub.domain.animal.dto.AnimalDto;
 import pl.coderslab.animalclub.domain.animal.dto.AnimalSaveDto;
@@ -54,5 +54,12 @@ public class AnimalService {
             animal.setPhoto(savedFileName);
         }
         animalRepository.save(animal);
+    }
+
+    public List<AnimalDto> findTopAnimals(int size) {
+        Pageable page = Pageable.ofSize(size);
+        return animalRepository.findTopByRating(page).stream()
+                .map(AnimalDtoMapper::map)
+                .toList();
     }
 }

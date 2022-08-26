@@ -31,7 +31,7 @@ public class GenreController {
         List<AnimalDto> animals = animalService.findAnimalsByGenreName(name);
         model.addAttribute("heading", genre.getName());
         model.addAttribute("description", genre.getDescription());
-        model.addAttribute("animals", animals);
+        model.addAttribute("animal", animals);
         return "animal-listing";
 
     }

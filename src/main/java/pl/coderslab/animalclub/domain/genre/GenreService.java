@@ -1,9 +1,9 @@
 package pl.coderslab.animalclub.domain.genre;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.animalclub.domain.genre.dto.GenreDto;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;

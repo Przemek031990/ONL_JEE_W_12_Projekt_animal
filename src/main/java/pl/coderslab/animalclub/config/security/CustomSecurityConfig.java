@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
 @Configuration
 class CustomSecurityConfig {
     private static final String USER_ROLE = "USER";
@@ -20,7 +19,8 @@ class CustomSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
-                        .mvcMatchers("/admin/**").hasAnyRole(EDITOR_ROLE, ADMIN_ROLE)
+                        .mvcMatchers("/ocen-pupila").authenticated()
+                        .mvcMatchers("/admin/**").hasAnyRole(EDITOR_ROLE, ADMIN_ROLE, USER_ROLE)
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
